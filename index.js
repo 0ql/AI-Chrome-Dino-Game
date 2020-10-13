@@ -4,20 +4,24 @@ function setup() {
 	createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
 	angleMode(DEGREES);
 
-	dino = new Dino(50, 0, 16, 32, 1);
+	dino = new Dino(50, 0, DINO_WIDTH, DINO_HEIGHT, GRAVITY);
 
 	obstacles = [];
-	obstacles.push(new Obstacle(int(random(50))));
+	obstacles.push(new Obstacle(int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE))));
 
 	for(var i = 0; i < 10; i++) {
-		obstacles.push(new Obstacle(obstacles[i].x + int(random(50)), CANVAS_HEIGHT - 16, 16, 16));
+		generateNewObstacle();
 	}
 }
 
 function draw() {
 	background(220);
 
-	line(0, 300, 1000, 300);
+	for(var i = 0; i <  obstacles.length; i++) {
+		if(obstacles[i].collide(dino)) {
+			console.log("lsot");
+		}
+	}
 
 	for(var i = 0; i <  obstacles.length; i++) {
 		obstacles[i].update();
@@ -29,4 +33,34 @@ function draw() {
 
 	dino.update();
 	dino.draw();
+}
+
+function generateNewObstacle() {
+	var maxy = 0;
+
+	for(var i = 0; i < obstacles.length; i++) {
+		if(obstacles[i].x > maxy) {
+			maxy = obstacles[i].x;
+		}
+	}
+
+	obstacles.push(new Obstacle(maxy + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
+}
+
+function distanceFromDinoToNextObstacle() {
+	var maxy = 0;
+
+	for(var i = 0; i < obstacles.length; i++) {
+		if(obstacles[i].x > maxy) {
+			maxy = obstacles[i].x;
+		}
+	}
+
+	return maxy - dino.x;
+}
+
+function keyPressed() {
+	if(key == " ") {
+		dino.jump();
+	}
 }
