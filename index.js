@@ -36,27 +36,27 @@ function draw() {
 }
 
 function generateNewObstacle() {
-	var maxy = 0;
+	var maxx = 0;
 
 	for(var i = 0; i < obstacles.length; i++) {
-		if(obstacles[i].x > maxy) {
-			maxy = obstacles[i].x;
+		if(obstacles[i].x > maxx) {
+			maxx = obstacles[i].x;
 		}
 	}
 
-	obstacles.push(new Obstacle(maxy + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
+	obstacles.push(new Obstacle(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
 }
 
 function distanceFromDinoToNextObstacle() {
-	var maxy = 0;
+	var minx = 10000000;
 
 	for(var i = 0; i < obstacles.length; i++) {
-		if(obstacles[i].x > maxy) {
-			maxy = obstacles[i].x;
+		if(obstacles[i].x < minx) {
+			minx = obstacles[i].x;
 		}
 	}
 
-	return maxy - dino.x;
+	return minx - dino.x - dino.width;
 }
 
 function keyPressed() {
