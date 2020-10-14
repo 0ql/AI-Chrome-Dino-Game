@@ -11,10 +11,10 @@ class Dino {
 
     update() {
         if(this.y + this.height < CANVAS_HEIGHT) {
-            this.jumping = false;
             this.vel += this.acc;
             this.y += this.vel;
             if(this.y + this.height > CANVAS_HEIGHT) {
+                this.jumping = false;
                 this.y = CANVAS_HEIGHT - this.height;
                 this.vel = 0;
             }
@@ -28,7 +28,8 @@ class Dino {
     jump() {
         if(this.jumping == false) {
             this.jumping = true;
-            this.y = - DINO_JUMP_POWER;
+            this.vel = -DINO_JUMP_POWER;
+            this.y -= 10;
         }
     }
 }
