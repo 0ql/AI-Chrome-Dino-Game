@@ -11,9 +11,13 @@ class Dino {
 
     update() {
         if(this.y + this.height < CANVAS_HEIGHT) {
+            //wenn dino über dem Boden
+            //physics
             this.vel += this.acc;
             this.y += this.vel;
             if(this.y + this.height > CANVAS_HEIGHT) {
+                //collision dedection für den boden
+                //wenn unter Boden jumping auf false, auf höhe des bodens setzen und vel = 0
                 this.jumping = false;
                 this.y = CANVAS_HEIGHT - this.height;
                 this.vel = 0;
@@ -27,6 +31,7 @@ class Dino {
 
     jump() {
         if(this.jumping == false) {
+            //wenn er nicht gerade springt (gegen doppeljumps) knapp über den Boden anheben (sonst klappt das wegen der CD oben nicht) und Geschwindigkeit nach oben
             this.jumping = true;
             this.vel = -DINO_JUMP_POWER;
             this.y = CANVAS_HEIGHT - this.height - 1;
@@ -34,12 +39,18 @@ class Dino {
     }
 
     duck() {
-        this.height = DINO_DUCK_HEIGHT;
-        this.y = CANVAS_HEIGHT - DINO_DUCK_HEIGHT;
+        if(this.jumping == false) {
+            //wenn dino sich nicht duckt neue größe & pos für ducken einstellen
+            this.height = DINO_DUCK_HEIGHT;
+            this.width = DINO_DUCK_WIDTH;
+            this.y = CANVAS_HEIGHT - DINO_DUCK_HEIGHT;
+        }
     }
 
     unduck() {
+        //ducken wieder aufheben
         this.height = DINO_HEIGHT;
+        this.width = DINO_WIDTH;
         this.y = CANVAS_HEIGHT - DINO_HEIGHT;
     }
 }

@@ -7,6 +7,7 @@ class Obstacle {
     }
 
     collide(dino) {
+        //Collision detection aus dem internet
         if (this.x < dino.x + dino.width &&
             this.x + this.width > dino.x &&
             this.y < dino.y + dino.height &&
@@ -18,10 +19,14 @@ class Obstacle {
     }
     
     update() {
+        //wenn obstacle links aus dem bildschirm gelaufen ist...
         this.x -= OBSTACLE_SPEED;
         
+        //...entfernen...
         if(this.x + this.width < 0) {
             obstacles.splice(obstacles.indexOf(this), 1);
+
+            //...und neues einfügen
             generateNewObstacle();
         }
     }
