@@ -19,7 +19,7 @@ function draw() {
 
 	for(var i = 0; i <  obstacles.length; i++) {
 		if(obstacles[i].collide(dino)) {
-			console.log("lsot");
+			setup();
 		}
 	}
 
@@ -62,5 +62,13 @@ function distanceFromDinoToNextObstacle() {
 function keyPressed() {
 	if(key == " ") {
 		dino.jump();
+	} else if (keyCode == SHIFT) {
+		dino.duck();
+	}
+}
+
+function keyReleased() {
+	if(keyCode == SHIFT) {
+		dino.unduck();
 	}
 }

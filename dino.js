@@ -29,7 +29,17 @@ class Dino {
         if(this.jumping == false) {
             this.jumping = true;
             this.vel = -DINO_JUMP_POWER;
-            this.y -= 10;
+            this.y = CANVAS_HEIGHT - this.height - 1;
         }
+    }
+
+    duck() {
+        this.height = DINO_DUCK_HEIGHT;
+        this.y = CANVAS_HEIGHT - DINO_DUCK_HEIGHT;
+    }
+
+    unduck() {
+        this.height = DINO_HEIGHT;
+        this.y = CANVAS_HEIGHT - DINO_HEIGHT;
     }
 }

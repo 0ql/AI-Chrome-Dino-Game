@@ -3,6 +3,8 @@ const CANVAS_HEIGHT = 300;
 
 const DINO_WIDTH = 16;
 const DINO_HEIGHT = 32;
+const DINO_DUCK_HEIGHT = 16;
+
 const GRAVITY = 0.5;
 const DINO_JUMP_POWER = 7;
 
