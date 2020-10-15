@@ -1,8 +1,12 @@
+const POPSIZE = 20; // größe der Population die jede Runde generiert wird
+const GAMEMODE = 'PLAYER'; // 'PLAYER' wenn nur ein Dino vom Benutzer kontrolliert werden soll; 'AI' funktioniert noch nicht
+
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 300;
 
-const DINO_WIDTH = 32;
+const DINO_WIDTH = 38;
 const DINO_HEIGHT = 45;
+const DINO_X = 50;
 
 const DISTANCE_COEFFICIENT = 100; // teile gelaufene pixel durch diesen wert damit die zahl nicht so groß wird
 
@@ -13,7 +17,7 @@ const GRAVITY = 0.5;
 const DINO_JUMP_POWER = 10;
 
 const OBSTACLE_WIDTH = 32;
-const OBSTACLE_HEIGHT = 40;
+const OBSTACLE_HEIGHT = 48;
 const OBSTACLE_SPEED = 4;
 
 const MIN_WALKED_DISTANCE_FOR_DRAGONS = 10; //minimale distanz, die der player schon gelaufen sein muss, damit es fliegende obstacles gibt (damit die erst später kommen)
@@ -26,3 +30,11 @@ const DRAGON_SPEED = 1;
 
 const OBSTACLE_MIN_DISTANCE = 200;
 const OBSTACLE_MAX_DISTANCE = 600;
+
+const nt = neataptic;
+const neat = new nt.Neat(2, 2, null, { // neue Neataptic instanz
+	mutation: nt.methods.mutation.ALL,
+	popsize: POPSIZE,
+	mutationRate: 0.2,
+	elitism: 10
+});
