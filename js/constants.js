@@ -4,8 +4,10 @@ const CANVAS_HEIGHT = 300;
 const DINO_WIDTH = 32;
 const DINO_HEIGHT = 45;
 
-const DINO_DUCK_WIDTH = 32;
-const DINO_DUCK_HEIGHT = 16;
+const DISTANCE_COEFFICIENT = 100; // teile gelaufene pixel durch diesen wert damit die zahl nicht so groß wird
+
+const DINO_CROUCH_WIDTH = 32;
+const DINO_CROUCH_HEIGHT = 16;
 
 const GRAVITY = 0.5;
 const DINO_JUMP_POWER = 10;
