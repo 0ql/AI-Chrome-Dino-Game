@@ -5,6 +5,7 @@ var distanceWalked;
 function setup() {
 	createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
 	angleMode(DEGREES);
+	frameRate(60);
 
 	distanceWalked = 0;
 

@@ -4,6 +4,8 @@ class Obstacle {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        this.img = loadImage("assets/kaktus.png");
     }
 
     collide(dino) {
@@ -32,6 +34,6 @@ class Obstacle {
     }
 
     draw() {
-        rect(this.x, this.y, this.width, this.height);
+        image(this.img, this.x, this.y, this.width, this.height);
     }
 }

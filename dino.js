@@ -7,6 +7,8 @@ class Dino {
         this.acc = acc;
         this.vel = 0;
         this.jumping = false;
+
+        this.img = loadImage("assets/dino.png");
     }
 
     update() {
@@ -26,7 +28,7 @@ class Dino {
     }
 
     draw() {
-        rect(this.x, this.y, this.width, this.height);
+        image(this.img, this.x, this.y, this.width, this.height);
     }
 
     jump() {
