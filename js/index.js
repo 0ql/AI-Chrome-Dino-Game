@@ -111,5 +111,5 @@ function keyReleased() {
 }
 
 function realDistance() {
-  return distanceWalked / DISTANCE_COEFFICIENT;
+  return int(distanceWalked / DISTANCE_COEFFICIENT);
 }
