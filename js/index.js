@@ -17,7 +17,7 @@ function setup() {
   obstacles.push(new Obstacle(int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE))));
 
   //restliche 10 mit generateNewObstacle()
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 3; i++) {
     generateNewObstacle();
   }
 }
@@ -66,7 +66,7 @@ function generateNewObstacle() {
 
   // wenn player schon weit genug gelaufen & Zufall
 
-  if (distanceWalked > MIN_WALKED_DISTANCE_FOR_FLYING_OBSTACLES && random() > FLYING_OBSTACLE_PROBABILITY) {
+  if (realDistance() > MIN_WALKED_DISTANCE_FOR_FLYING_OBSTACLES && random() < FLYING_OBSTACLE_PROBABILITY) {
 
     //fliegendes Obstacle (diese Zeile wird aus irgendeinem Grund nie ausgeführt)
     obstacles.push(new Obstacle(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT - FLYING_OBSTACLE_HEIGHT_WHERE_THEY_FLY, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
