@@ -7,8 +7,10 @@ class Dino {
     this.acc = acc;
     this.vel = 0;
     this.jumping = false;
+    this.crouching = false;
 
     this.img = loadImage("../assets/dino.png");
+    this.crouchimg = loadImage("../assets/crouching_dino.png")
   }
 
   update() {
@@ -28,7 +30,11 @@ class Dino {
   }
 
   draw() {
-    image(this.img, this.x, this.y, this.width, this.height);
+    if (this.crouching) {
+      image(this.crouchimg, this.x, this.y, this.width, this.height);
+    } else {
+      image(this.img, this.x, this.y, this.width, this.height);
+    }
   }
 
   jump() {
@@ -46,6 +52,7 @@ class Dino {
       this.height = DINO_CROUCH_HEIGHT;
       this.width = DINO_CROUCH_WIDTH;
       this.y = CANVAS_HEIGHT - DINO_CROUCH_HEIGHT;
+      this.crouching = true;
     }
   }
 
@@ -54,5 +61,6 @@ class Dino {
     this.height = DINO_HEIGHT;
     this.width = DINO_WIDTH;
     this.y = CANVAS_HEIGHT - DINO_HEIGHT;
+    this.crouching = false;
   }
 }

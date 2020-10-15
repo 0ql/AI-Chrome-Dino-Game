@@ -66,10 +66,10 @@ function generateNewObstacle() {
 
   // wenn player schon weit genug gelaufen & Zufall
 
-  if (realDistance() > MIN_WALKED_DISTANCE_FOR_FLYING_OBSTACLES && random() < FLYING_OBSTACLE_PROBABILITY) {
+  if (realDistance() > MIN_WALKED_DISTANCE_FOR_DRAGONS && random() < DRAGON_PROBABILITY) {
 
-    //fliegendes Obstacle (diese Zeile wird aus irgendeinem Grund nie ausgeführt)
-    obstacles.push(new Obstacle(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT - FLYING_OBSTACLE_HEIGHT_WHERE_THEY_FLY, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
+    //fliegendes Obstacle
+    obstacles.push(new Dragon(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - DRAGON_HEIGHT - DRAGON_HEIGHT_WHERE_THEY_FLY, DRAGON_WIDTH, DRAGON_HEIGHT, DRAGON_SPEED));
   } else {
 
     //normales Obstacle
