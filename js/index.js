@@ -37,6 +37,7 @@ function draw() {
 
   //das ist nur debug für die funktionen
   text(distanceFromDinoToNextObstacle(), 100, 50);
+  text(distanceFromDinoToNextDragon(), 150, 50);
 }
 
 function keyPressed() {

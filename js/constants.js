@@ -32,7 +32,7 @@ const OBSTACLE_MIN_DISTANCE = 200;
 const OBSTACLE_MAX_DISTANCE = 600;
 
 // Animation, größer ist langsamer
-const DINO_ANIM_SPEED = 500;
+const DINO_ANIM_SPEED = 150;
 const DRAGON_ANIM_SPEED = 500;
 
 const nt = neataptic;
