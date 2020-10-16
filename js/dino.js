@@ -9,8 +9,14 @@ class Dino {
     this.jumping = false;
     this.crouching = false;
 
-    this.img = loadImage("../assets/dino.png");
-    this.crouchimg = loadImage("../assets/crouching_dino.png")
+    this.jumpimg = loadImage("../assets/dino_jumping.png");
+    this.crouchimg = loadImage("../assets/crouching_dino.png");
+
+    var imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
+    this.runAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
+
+    var imgs = [loadImage("../assets/dino_crouching1.png"), loadImage("../assets/dino_crouching2.png")];
+    this.crouchAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
   }
 
   update() {
@@ -27,13 +33,25 @@ class Dino {
         this.vel = 0;
       }
     }
+
+    //animation
+
+    if (!this.jumping) {
+      if (this.crouching) {
+        this.crouchAnimHandler.update();
+      } else {
+        this.runAnimHandler.update();
+      }
+    }
   }
 
   draw() {
     if (this.crouching) {
-      image(this.crouchimg, this.x, this.y, this.width, this.height);
+      image(this.crouchAnimHandler.getImage(), this.x, this.y, this.width, this.height);
+    } else if (this.jumping) {
+      image(this.jumpimg, this.x, this.y, this.width, this.height);
     } else {
-      image(this.img, this.x, this.y, this.width, this.height);
+      image(this.runAnimHandler.getImage(), this.x, this.y, this.width, this.height);
     }
   }
 

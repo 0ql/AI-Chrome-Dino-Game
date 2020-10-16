@@ -6,7 +6,12 @@ class Dragon {
     this.height = height;
     this.speed = speed;
 
-    this.img = loadImage("../assets/dragon.png");
+    var imgs = [loadImage("../assets/dragon1.png"), loadImage("../assets/dragon2.png")];
+
+    this.animHandler = new AnimHandler(imgs, DRAGON_ANIM_SPEED);
+
+    this.animTime = 0;
+    this.imgIndex = 0;
   }
 
   collide(dino) {
@@ -32,9 +37,12 @@ class Dragon {
       //...und neues einfügen
       generateNewObstacle();
     }
+
+    //Animation
+    this.animHandler.update();
   }
 
   draw() {
-    image(this.img, this.x, this.y, this.width, this.height);
+    image(this.animHandler.getImage(), this.x, this.y, this.width, this.height);
   }
 }
