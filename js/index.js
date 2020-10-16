@@ -28,10 +28,6 @@ function draw() {
     runPLAYER();
   }
 
-  //same mit dem dino
-  dino.update();
-  dino.draw();
-
   //distanz anzeigen
   text(realDistance(), 50, 50);
 
