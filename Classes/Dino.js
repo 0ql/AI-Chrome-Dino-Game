@@ -54,7 +54,7 @@ class Dino {
   }
 
   jump() {
-    if (this.jumping == false) {
+    if (!this.jumping && !this.crouching) {
       //wenn er nicht gerade springt (gegen doppeljumps) knapp über den Boden anheben (sonst klappt das wegen der CD oben nicht) und Geschwindigkeit nach oben
       this.jumping = true;
       this.vel = -DINO_JUMP_POWER;
@@ -63,7 +63,7 @@ class Dino {
   }
 
   crouch() {
-    if (this.jumping == false) {
+    if (!this.jumping && !this.crouching) {
       //wenn dino sich nicht croucth neue größe & pos für crouchen einstellen
       this.height = DINO_CROUCH_HEIGHT;
       this.width = DINO_CROUCH_WIDTH;
@@ -73,10 +73,12 @@ class Dino {
   }
 
   uncrouch() {
-    //ducken wieder aufheben
-    this.height = DINO_HEIGHT;
-    this.width = DINO_WIDTH;
-    this.y = CANVAS_HEIGHT - DINO_HEIGHT;
-    this.crouching = false;
+    if (this.crouching) {
+      //ducken wieder aufheben
+      this.height = DINO_HEIGHT;
+      this.width = DINO_WIDTH;
+      this.y = CANVAS_HEIGHT - DINO_HEIGHT;
+      this.crouching = false;
+    }
   }
 }

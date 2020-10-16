@@ -41,7 +41,7 @@ function keyPressed() {
     if (key == " " || keyCode == UP_ARROW || key == "w") {
       // sprung
       dino.jump();
-    } else if (keyCode == SHIFT || keyCode == DOWN_ARROW || key == "s") {
+    } else if (keyCode == SHIFT || keyCode == DOWN_ARROW || key == "w") {
       // crouchen
       dino.crouch();
     }
