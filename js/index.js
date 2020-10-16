@@ -1,17 +1,11 @@
-let dino, obstacles;
-
-let distanceWalked;
+let dino, obstacles = [], distanceWalked = 0, agents = [];
 
 function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   angleMode(DEGREES);
   frameRate(60);
 
-  distanceWalked = 0;
-
-  dino = new Dino(50, 0, DINO_WIDTH, DINO_HEIGHT, GRAVITY);
-
-  obstacles = [];
+  GAMEMODE === "PLAYER" ? dino = new Dino(DINO_X, 0) : init();
 
   //ein obstacle für den start
   obstacles.push(new Obstacle(int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE))));
@@ -25,23 +19,13 @@ function setup() {
 function draw() {
   background(220);
 
-  //gelaufene distanz erhöhen
+  // gelaufene distanz erhöhen
   distanceWalked += OBSTACLE_SPEED;
 
-
-  //alle obstacles bewegen
-  for (let i = 0; i < obstacles.length; i++) {
-    //collisions
-    if (obstacles[i].collide(dino)) {
-      //wenn collidiert neustart
-      setup();
-    }
-
-    //update
-    obstacles[i].update();
-
-    //zeichnen
-    obstacles[i].draw();
+  if (GAMEMODE === "AI") {
+    runAI();
+  } else {
+    runPLAYER();
   }
 
   //same mit dem dino
@@ -94,22 +78,22 @@ function distanceFromDinoToNextObstacle() {
 }
 
 function keyPressed() {
-  if (key == " " || keyCode == UP_ARROW) {
-    //sprung
-    dino.jump();
-  } else if (keyCode == SHIFT || keyCode == DOWN_ARROW) {
-    //crouchen
-    dino.crouch();
+  if (GAMEMODE === "PLAYER") {
+    if (key == " " || keyCode == UP_ARROW || key == "w") {
+      // sprung
+      dino.jump();
+    } else if (keyCode == SHIFT || keyCode == DOWN_ARROW || key == "s") {
+      // crouchen
+      dino.crouch();
+    }
   }
 }
 
 function keyReleased() {
-  if (keyCode == SHIFT || keyCode == DOWN_ARROW) {
-    //crouchen aufheben
-    dino.uncrouch();
+  if (GAMEMODE === "PLAYER") {
+    if (keyCode == SHIFT || keyCode == DOWN_ARROW || key == "s") {
+      // crouchen aufheben
+      dino.uncrouch();
+    }
   }
-}
-
-function realDistance() {
-  return int(distanceWalked / DISTANCE_COEFFICIENT);
 }

@@ -1,15 +1,16 @@
 class Dino {
-  constructor(x, y, width, height, acc) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
-    this.acc = acc;
+    this.alive = true;
+    this.width = DINO_WIDTH;
+    this.height = DINO_HEIGHT;
+    this.acc = GRAVITY;
     this.vel = 0;
     this.jumping = false;
     this.crouching = false;
 
-    this.jumpimg = loadImage("../assets/dino_jumping.png");
+    this.img = loadImage("../assets/dino.png");
     this.crouchimg = loadImage("../assets/crouching_dino.png");
 
     var imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
@@ -20,8 +21,7 @@ class Dino {
   }
 
   update() {
-    if (this.y + this.height < CANVAS_HEIGHT) {
-      //wenn dino über dem Boden
+    if (this.y + this.height < CANVAS_HEIGHT) { // wenn dino über dem Boden
       //physics
       this.vel += this.acc;
       this.y += this.vel;
