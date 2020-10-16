@@ -11,7 +11,6 @@ class Dino {
     this.crouching = false;
 
     this.jumpimg = loadImage("../assets/dino_jumping.png");
-    this.crouchimg = loadImage("../assets/crouching_dino.png");
 
     let imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
     this.runAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
