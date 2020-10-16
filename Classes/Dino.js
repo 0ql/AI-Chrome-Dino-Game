@@ -10,7 +10,7 @@ class Dino {
     this.jumping = false;
     this.crouching = false;
 
-    this.img = loadImage("../assets/dino.png");
+    this.jumpimg = loadImage("../assets/dino_jumping.png");
     this.crouchimg = loadImage("../assets/crouching_dino.png");
 
     var imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
@@ -35,7 +35,6 @@ class Dino {
     }
 
     //animation
-
     if (!this.jumping) {
       if (this.crouching) {
         this.crouchAnimHandler.update();

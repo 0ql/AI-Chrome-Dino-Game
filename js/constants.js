@@ -13,7 +13,7 @@ const DISTANCE_COEFFICIENT = 100; // teile gelaufene pixel durch diesen wert dam
 const DINO_CROUCH_WIDTH = 55;
 const DINO_CROUCH_HEIGHT = 26;
 
-const GRAVITY = 0.5;
+const GRAVITY = 0.3;
 const DINO_JUMP_POWER = 10;
 
 const OBSTACLE_WIDTH = 32;
@@ -32,7 +32,7 @@ const OBSTACLE_MIN_DISTANCE = 200;
 const OBSTACLE_MAX_DISTANCE = 600;
 
 // Animation, größer ist langsamer
-const DINO_ANIM_SPEED = 100;
+const DINO_ANIM_SPEED = 500;
 const DRAGON_ANIM_SPEED = 500;
 
 const nt = neataptic;
