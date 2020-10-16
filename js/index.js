@@ -34,47 +34,9 @@ function draw() {
 
   //distanz anzeigen
   text(realDistance(), 50, 50);
-}
 
-function generateNewObstacle() {
-
-  //finde obstacle des am weitesten rechts ist
-
-  let maxx = 0;
-
-  for (let i = 0; i < obstacles.length; i++) {
-    if (obstacles[i].x > maxx) {
-      maxx = obstacles[i].x;
-    }
-  }
-
-  // wenn player schon weit genug gelaufen & Zufall
-
-  if (realDistance() > MIN_WALKED_DISTANCE_FOR_DRAGONS && random() < DRAGON_PROBABILITY) {
-
-    //fliegendes Obstacle
-    obstacles.push(new Dragon(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - DRAGON_HEIGHT - DRAGON_HEIGHT_WHERE_THEY_FLY, DRAGON_WIDTH, DRAGON_HEIGHT, random(-DRAGON_SPEED, DRAGON_SPEED)));
-  } else {
-
-    //normales Obstacle
-    obstacles.push(new Obstacle(maxx + int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE)), CANVAS_HEIGHT - OBSTACLE_HEIGHT, OBSTACLE_WIDTH, OBSTACLE_HEIGHT));
-  }
-}
-
-function distanceFromDinoToNextObstacle() {
-  //distanz von Dino zu obstacle direkt rechts neben ihm
-
-  //finde obstacle dessen x am kleinsten aber rechts von dino
-  let minx = Math.Infinity;
-
-  for (let i = 0; i < obstacles.length; i++) {
-    if (obstacles[i].x < minx && obstacles[i].x > dino.x + dino.width) {
-      minx = obstacles[i].x;
-    }
-  }
-
-  //pos vom obstacle minus die vom dino und die breite des dinos, weil wir die distanz von rechte kante dino zu linker kante obstacle wollen
-  return minx - dino.x - dino.width;
+  //das ist nur debug für die funktionen
+  text(distanceFromDinoToNextObstacle(), 100, 50);
 }
 
 function keyPressed() {

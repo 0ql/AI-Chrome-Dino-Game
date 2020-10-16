@@ -13,10 +13,10 @@ class Dino {
     this.jumpimg = loadImage("../assets/dino_jumping.png");
     this.crouchimg = loadImage("../assets/crouching_dino.png");
 
-    var imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
+    let imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
     this.runAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
 
-    var imgs = [loadImage("../assets/dino_crouching1.png"), loadImage("../assets/dino_crouching2.png")];
+    imgs = [loadImage("../assets/dino_crouching1.png"), loadImage("../assets/dino_crouching2.png")];
     this.crouchAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
   }
 

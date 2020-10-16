@@ -70,12 +70,27 @@ function distanceFromDinoToNextObstacle() { // distanz von Dino zu obstacle dire
   let minx = Infinity;
 
   for (let i in obstacles) {
-    if (obstacles[i].x < minx && obstacles[i].x > DINO_X + DINO_WIDTH) {
+    if (obstacles[i].x < minx && obstacles[i].x > DINO_X + DINO_WIDTH && obstacles[i] instanceof Obstacle) {
       minx = obstacles[i].x;
     }
   }
 
   //pos vom obstacle minus die vom dino und die breite des dinos, weil wir die distanz von rechte kante dino zu linker kante obstacle wollen
+  return minx - DINO_X - DINO_WIDTH;
+}
+
+function distanceFromDinoToNextDragon() { // distanz von Dino zu dragon direkt rechts neben ihm
+
+  // finde dragon dessen x am kleinsten aber rechts von dino
+  let minx = Infinity;
+
+  for (let i in obstacles) {
+    if (obstacles[i].x < minx && obstacles[i].x > DINO_X + DINO_WIDTH && obstacles[i] instanceof Dragon) {
+      minx = obstacles[i].x;
+    }
+  }
+
+  //pos vom dragon minus die vom dino und die breite des dinos, weil wir die distanz von rechte kante dino zu linker kante dragon wollen
   return minx - DINO_X - DINO_WIDTH;
 }
 
