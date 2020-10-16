@@ -1,13 +1,13 @@
 class Dino {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor() {
+    this.x = DINO_X;
+    this.y = DINO_Y;
     this.alive = true;
     this.width = DINO_WIDTH;
     this.height = DINO_HEIGHT;
     this.acc = GRAVITY;
     this.vel = 0;
-    this.jumping = false;
+    this.jumping = true;
     this.crouching = false;
 
     this.jumpimg = loadImage("../assets/dino_jumping.png");
@@ -17,7 +17,19 @@ class Dino {
 
     imgs = [loadImage("../assets/dino_crouching1.png"), loadImage("../assets/dino_crouching2.png")];
     this.crouchAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
-  }
+	}
+	
+	reset() {
+		this.x = DINO_X;
+    this.y = DINO_Y;
+    this.alive = true;
+    this.width = DINO_WIDTH;
+    this.height = DINO_HEIGHT;
+    this.acc = GRAVITY;
+    this.vel = 0;
+    this.jumping = true;
+    this.crouching = false;
+	}
 
   update() {
     if (this.y + this.height < CANVAS_HEIGHT) { // wenn dino über dem Boden
@@ -64,7 +76,7 @@ class Dino {
 
   crouch() {
     if (!this.jumping && !this.crouching) {
-      //wenn dino sich nicht croucth neue größe & pos für crouchen einstellen
+      //wenn dino sich nicht croucht neue größe & pos für crouchen einstellen
       this.height = DINO_CROUCH_HEIGHT;
       this.width = DINO_CROUCH_WIDTH;
       this.y = CANVAS_HEIGHT - DINO_CROUCH_HEIGHT;

@@ -1,5 +1,5 @@
-const POPSIZE = 20; // größe der Population die jede Runde generiert wird
-const GAMEMODE = 'PLAYER'; // 'PLAYER' wenn nur ein Dino vom Benutzer kontrolliert werden soll; 'AI' funktioniert noch nicht
+const POPSIZE = 100; // größe der Population die jede Runde generiert wird
+const GAMEMODE = 'AI'; // 'PLAYER' wenn nur ein Dino vom Benutzer kontrolliert werden soll; 'AI' funktioniert noch nicht
 
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 300;
@@ -7,6 +7,7 @@ const CANVAS_HEIGHT = 300;
 const DINO_WIDTH = 40;
 const DINO_HEIGHT = 43;
 const DINO_X = 50;
+const DINO_Y = 0;
 
 const DISTANCE_COEFFICIENT = 100; // teile gelaufene pixel durch diesen wert damit die zahl nicht so groß wird
 
@@ -40,5 +41,5 @@ const neat = new nt.Neat(2, 2, null, { // neue Neataptic instanz
   mutation: nt.methods.mutation.ALL,
   popsize: POPSIZE,
   mutationRate: 0.2,
-  elitism: 10
+  elitism: Math.round(POPSIZE * 0.1)
 });
