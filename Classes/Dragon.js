@@ -6,7 +6,7 @@ class Dragon {
     this.height = height;
     this.speed = speed;
 
-    let imgs = [loadImage("../assets/dragon1.png"), loadImage("../assets/dragon2.png")];
+    let imgs = [dragon1_png, dragon2_png];
 
     this.animHandler = new AnimHandler(imgs, DRAGON_ANIM_SPEED);
 

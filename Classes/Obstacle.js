@@ -5,7 +5,7 @@ class Obstacle {
     this.width = width;
     this.height = height;
 
-    this.img = loadImage("../assets/kaktus.png");
+    this.img = kaktus_png;
   }
 
   collide(dino) {

@@ -10,12 +10,12 @@ class Dino {
     this.jumping = true;
     this.crouching = false;
 
-    this.jumpimg = loadImage("../assets/dino_jumping.png");
+    this.jumpimg = dino_jumping_img;
 
-    let imgs = [loadImage("../assets/dino_running1.png"), loadImage("../assets/dino_running2.png")];
+    let imgs = [dino_running1_png, dino_running2_png];
     this.runAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
 
-    imgs = [loadImage("../assets/dino_crouching1.png"), loadImage("../assets/dino_crouching2.png")];
+    imgs = [dino_crouching1_png, dino_crouching2_png];
     this.crouchAnimHandler = new AnimHandler(imgs, DINO_ANIM_SPEED);
 	}
 	

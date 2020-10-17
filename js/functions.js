@@ -6,19 +6,25 @@ function init() {
 
 function generateObstacles() {
 	//ein obstacle für den start
-  obstacles.push(new Obstacle(int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE))));
+	obstacles.push(new Obstacle(int(random(OBSTACLE_MIN_DISTANCE, OBSTACLE_MAX_DISTANCE))));
 
 	for (let i = 0; i < 3; i++) {
-    generateNewObstacle();
-  }
+		generateNewObstacle();
+	}
 }
 
 function runAI() {
 
 	if (agentsAlive < 1) {
-		console.log('Durchschnitt letzter Generation: ' + neat.getAverage());
+		let av = neat.getAverage();
+		neat.sort();
+		drawGraph(neat.population[0].graph($('.best').width() / 2, $('.best').height() / 2), '.best');
+		console.log('Durchschnitt letzter Generation: ' + av);
+		averageScores.push(av);
+		charts();
 		neat.evolve();
 		obstacles = [];
+		scoresThisRound = [];
 		generateObstacles();
 		for (let i in agents) {
 			agents[i].reset();
@@ -33,6 +39,7 @@ function runAI() {
 			if (agents[i].alive && obstacles[j].collide(agents[i])) {
 				agents[i].alive = false;
 				neat.population[i].score = realDistance();
+				scoresThisRound.push(realDistance());
 				agentsAlive--;
 			}
 		}
@@ -44,7 +51,7 @@ function runAI() {
 	// NN ausführen
 	for (let i in agents) {
 		if (agents[i].alive) {
-			let output = neat.population[i].activate([distDtoO, distDtoD]);
+			let output = neat.population[i].activate([distDtoO, distDtoD, agents[i].jumping]);
 			if (output[0] > 0.5) {
 				agents[i].jump();
 			}
@@ -142,4 +149,32 @@ function realDistance() {
 
 function softSign(x) {
 	return x / (20 + Math.abs(x));
+}
+
+function charts() {
+	// Balkendiagramm
+	var data = [{
+		x: averageScores.length,
+		y: averageScores,
+		type: 'bar'
+	}
+	];
+	var layout = {
+		title: "Durschnittliche Punktzahl",
+		xaxis: { title: "Generation" },
+		yaxis: { title: "Punktzahl" }
+	}
+	Plotly.newPlot('chart1', data, layout);
+
+	// Histogramm
+	var data = {
+		x: scoresThisRound,
+		type: 'histogram',
+	};
+	var layout = {
+		title: "Punktzahl der Agenten der letzten Generation",
+		xaxis: { title: "Erreichte Punktzahl" },
+		yaxis: { title: "Anzahl der Agenten" }
+	}
+	Plotly.newPlot('chart2', [data], layout);
 }

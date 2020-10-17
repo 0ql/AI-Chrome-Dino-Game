@@ -1,7 +1,7 @@
-const POPSIZE = 100; // größe der Population die jede Runde generiert wird
+const POPSIZE = 200; // größe der Population die jede Runde generiert wird
 const GAMEMODE = 'AI'; // 'PLAYER' wenn nur ein Dino vom Benutzer kontrolliert werden soll; 'AI' funktioniert noch nicht
 
-const CANVAS_WIDTH = 1200;
+const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 300;
 
 const DINO_WIDTH = 40;
@@ -37,7 +37,7 @@ const DINO_ANIM_SPEED = 150;
 const DRAGON_ANIM_SPEED = 500;
 
 const nt = neataptic;
-const neat = new nt.Neat(2, 2, null, { // neue Neataptic instanz
+const neat = new nt.Neat(3, 2, null, { // neue Neataptic instanz
   mutation: nt.methods.mutation.ALL,
   popsize: POPSIZE,
   mutationRate: 0.2,

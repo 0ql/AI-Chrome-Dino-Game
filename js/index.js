@@ -1,10 +1,19 @@
-let dino, obstacles = [], distanceWalked = 0, agents = [], agentsAlive = POPSIZE;
+let dino, obstacles = [], distanceWalked = 0, agents = [], agentsAlive = POPSIZE, averageScores = [], scoresThisRound = [],
+dino_jumping_png, dino_running1_png, dino_running2_png, dino_crouching1_png, dino_crouching2_png, kaktus_png, dragon1_png, dragon2_png;
 
 function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   angleMode(DEGREES);
   frameRate(60);
 
+	dino_jumping_img = loadImage("../assets/dino_jumping.png");
+	dino_running1_png = loadImage("../assets/dino_running1.png");
+	dino_running2_png = loadImage("../assets/dino_running2.png");
+	dino_crouching1_png = loadImage("../assets/dino_crouching1.png");
+	dino_crouching2_png = loadImage("../assets/dino_crouching2.png");
+	kaktus_png = loadImage("../assets/kaktus.png");
+	dragon1_png = loadImage("../assets/dragon1.png")
+	dragon2_png = loadImage("../assets/dragon2.png")
   GAMEMODE === "PLAYER" ? dino = new Dino() : init();
 
   generateObstacles();

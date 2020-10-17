@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chrome Dino Game</title>
+	<link rel="stylesheet" href="main.css">
+	<title>Chrome Dino Game</title>
 </head>
 
 <body>
   <!-- Libraries -->
   <script src="lib/neataptic.js"></script>
   <script src="lib/p5.min.js"></script>
-  <script src="lib/plotly.min.js"></script>
+	<script src="lib/plotly.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="lib/webcola.js"></script>
 
   <!-- Classen importieren -->
   <script src="Classes/AnimHandler.js"></script>
@@ -19,11 +23,20 @@
   <script src="Classes/Obstacle.js"></script>
 
   <!-- JS Code -->
-  <script src="js/constants.js"></script>
+	<script src="js/constants.js"></script>
+	<script src="js/graph.js"></script>
   <script src="js/functions.js"></script>
   <script src="js/index.js"></script>
 
-  <main></main>
+	<div style="display: flex;">
+		<main></main>
+		<svg class="best" height="300px"/>
+	</div>
+	
+	<div style="display: flex;">
+		<div id="chart1"></div>
+		<div id="chart2"></div>
+	</div>
 </body>
 
 </html>
