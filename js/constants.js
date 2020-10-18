@@ -1,6 +1,7 @@
 const POPSIZE = 200; // größe der Population die jede Runde generiert wird
 const GAMEMODE = 'AI'; // 'PLAYER' wenn nur ein Dino vom Benutzer kontrolliert werden soll; 'AI' funktioniert noch nicht
 
+
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 300;
 

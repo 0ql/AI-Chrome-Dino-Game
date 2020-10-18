@@ -143,23 +143,6 @@ function distanceFromDinoToNextDragon() { // distanz von Dino zu dragon direkt r
   return minx !== Infinity ? minx - DINO_X - DINO_WIDTH : CANVAS_WIDTH - DINO_X;
 }
 
-function NextObstacleTypeDoenstMatter() { // distanz von Dino zu dragon direkt rechts neben ihm
-
-  // finde dragon dessen x am kleinsten aber rechts von dino
-  let minx = Infinity;
-  let obstacle;
-
-  for (let i in obstacles) {
-    if (obstacles[i].x < minx && obstacles[i].x > DINO_X + DINO_WIDTH) {
-      minx = obstacles[i].x;
-      obstacle = obstacles[i];
-    }
-  }
-
-  //pos vom dragon minus die vom dino und die breite des dinos, weil wir die distanz von rechte kante dino zu linker kante dragon wollen
-  return obstacle;
-}
-
 function realDistance() {
   return int(distanceWalked / DISTANCE_COEFFICIENT);
 }
@@ -196,14 +179,43 @@ function charts() {
   Plotly.newPlot('chart2', [data], layout);
 }
 
+
+function distToDino(obstacle) {
+  return obstacle.x - obstacle.width - DINO_X;
+}
+
+function compareDistToDino(obstacle1, obstacle2) {
+  if (distToDino(obstacle1) < distToDino(obstacle2)) {
+    return -1;
+  }
+
+  if (distToDino(obstacle1) > distToDino(obstacle2)) {
+    return 1;
+  }
+
+  return 0;
+}
+
 // das ist die Funktion die den Array ausgibt, gib ihr mal nen besseren Namen :)
 
 function returnArray() {
-  let nextObstacle = distanceFromDinoToNextObstacle();
+  let arr = [];
+  let sortedObstacleIndexes = []; // list of obstacle indexes sorted by distance to dino
 
-  let dist = nextObstacle.x - DINO_X - nextObstacle.width;
-  let type = (nextObstacle instanceof Obstacle) ? 0 : 1;
-  let height = nextObstacle.y + nextObstacle.height; // das ist jetzt die unterkante wenn du die oberkante willst musst du + nextObstacle.height wegmachen
+  for (let i = 0; i < obstacles.length; i++) {
+    // fill array with indexes
+    sortedObstacleIndexes[i] = i;
+  }
 
-  return [dist, type, height];
+  // sort by distance to Dino
+  sortedObstacleIndexes.sort(compareDistToDino);
+
+  for (let i = 0; i < sortedObstacleIndexes.length; i++) {
+    let index = sortedObstacleIndexes[i];
+    arr.push([distToDino(obstacles[index]),
+    (obstacles[index] instanceof Obstacle) ? 0 : 1,
+    obstacles[index].y - obstacles[index].height]);
+  }
+
+  return arr;
 }
