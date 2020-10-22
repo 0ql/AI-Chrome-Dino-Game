@@ -34,6 +34,10 @@ function draw() {
 
   //distanz anzeigen
   text(realDistance(), 50, 50);
+
+  if (frameCount % 100 == 0) {
+    console.log(returnArray());
+  }
 }
 
 function keyPressed() {

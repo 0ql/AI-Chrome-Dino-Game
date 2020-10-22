@@ -181,19 +181,7 @@ function charts() {
 
 
 function distToDino(obstacle) {
-  return obstacle.x - obstacle.width - DINO_X;
-}
-
-function compareDistToDino(obstacle1, obstacle2) {
-  if (distToDino(obstacle1) < distToDino(obstacle2)) {
-    return -1;
-  }
-
-  if (distToDino(obstacle1) > distToDino(obstacle2)) {
-    return 1;
-  }
-
-  return 0;
+  return (obstacle.x < DINO_X) ? 10000 : obstacle.x - DINO_X;
 }
 
 // das ist die Funktion die den Array ausgibt, gib ihr mal nen besseren Namen :)
@@ -208,13 +196,26 @@ function returnArray() {
   }
 
   // sort by distance to Dino
-  sortedObstacleIndexes.sort(compareDistToDino);
+  var len = sortedObstacleIndexes.length;
+
+  for (var i = 0; i < len; i++) {
+    for (var j = 0; j < len - i - 1; j++) {
+      if (distToDino(obstacles[sortedObstacleIndexes[j]]) > distToDino(obstacles[sortedObstacleIndexes[j + 1]])) {
+        // swap
+        var temp = sortedObstacleIndexes[j];
+        sortedObstacleIndexes[j] = sortedObstacleIndexes[j + 1];
+        sortedObstacleIndexes[j + 1] = temp;
+      }
+    }
+  }
+
+  console.log(sortedObstacleIndexes);
 
   for (let i = 0; i < sortedObstacleIndexes.length; i++) {
     let index = sortedObstacleIndexes[i];
     arr.push([distToDino(obstacles[index]),
     (obstacles[index] instanceof Obstacle) ? 0 : 1,
-    obstacles[index].y - obstacles[index].height]);
+    obstacles[index].y]);// - obstacles[index].height]);
   }
 
   return arr;
